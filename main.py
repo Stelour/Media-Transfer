@@ -32,11 +32,11 @@ logger.addHandler(ch)
 # logger.warning(f'\n')
 
 
-dsn = cx_Oracle.makedsn(host='172.16.117.117', port='1521', service_name='beregnvp')
+dsn = cx_Oracle.makedsn(host='///', port='///', service_name='///')
 
 try:
     logger.debug(f'Коннект базы')
-    connection = cx_Oracle.connect(user='tp', password='tp', dsn=dsn)
+    connection = cx_Oracle.connect(user='///', password='///', dsn=dsn)
     print("База данных доступна")
     logger.info(f'База доступна')
     connection.close()
@@ -52,7 +52,7 @@ Information_type_id_for_audoi = 50
 
 def get_oks():
     logger.debug(f'Вызов функции, которая выдает все айди\n')
-    connection = cx_Oracle.connect(user='tp', password='tp', dsn=dsn)
+    connection = cx_Oracle.connect(user='///', password='///', dsn=dsn)
     cursor = connection.cursor()
 
     oks = cursor.var(cx_Oracle.CURSOR)
@@ -83,7 +83,7 @@ def print_oks(self):
 
 def db_select(ok_id):
     logger.debug(f'Вызов функции, которая получает данные с бд\n')
-    connection = cx_Oracle.connect(user='tp', password='tp', dsn=dsn)
+    connection = cx_Oracle.connect(user='///', password='///', dsn=dsn)
     cursor = connection.cursor()
 
     cursor.execute("SELECT OK_ID, Begin_date, file_folder, file_name FROM TABLES.AUDIO_FRAGMENTS WHERE OK_ID = :ok_id", {'ok_id': ok_id})
@@ -98,7 +98,7 @@ def db_select(ok_id):
 
 def db_update(ok_id, new_folder, file_name):
     logger.debug(f'Вызов функции, которая обновляет данные в бд\n')
-    connection = cx_Oracle.connect(user='tp', password='tp', dsn=dsn)
+    connection = cx_Oracle.connect(user='///', password='///', dsn=dsn)
     cursor = connection.cursor()
 
     cursor.execute("UPDATE TABLES.AUDIO_FRAGMENTS SET file_folder = :new_folder WHERE OK_ID = :ok_id AND file_name = :file_name", {'new_folder': new_folder, 'ok_id': ok_id, 'file_name': file_name})
